@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseCreateCustomers < ActiveRecord::Migration[5.0]
+class DeviseCreateCustomers < ActiveRecord::Migration[6.0]
   def change
     create_table :customers do |t|
       ## Database authenticatable
@@ -13,7 +13,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.0]
 
       ## Rememberable
       t.datetime :remember_created_at
-      
+
       t.string :last_name
       t.string :first_name
       t.string :last_name_kana
@@ -25,7 +25,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.0]
       t.boolean :is_active
       t.datetime :created_at
       t.datetime :updated_at
-      
+
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
