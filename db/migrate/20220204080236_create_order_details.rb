@@ -7,8 +7,6 @@ class CreateOrderDetails < ActiveRecord::Migration[6.0]
       t.integer :price
       t.integer :amount
       t.integer :making_status
-      t.datetime :created_at
-      t.datetime :updated_at
 
 
       t.timestamps

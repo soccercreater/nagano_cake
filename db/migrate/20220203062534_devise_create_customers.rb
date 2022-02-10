@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateCustomers < ActiveRecord::Migration[6.0]
+
   def change
     create_table :customers do |t|
       ## Database authenticatable
@@ -18,13 +19,10 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.0]
       t.string :first_name
       t.string :last_name_kana
       t.string :first_name_kana
-      t.string :encrypted_password
       t.string :postal_code
       t.string :address
       t.string :telephone_number
-      t.boolean :is_active
-      t.datetime :created_at
-      t.datetime :updated_at
+      t.boolean :is_active, null: false, default: true
 
 
       ## Trackable

@@ -1,2 +1,19 @@
-<h1>Admin::Items#update</h1>
-<p>Find me in app/views/admin/items/update.html.erb</p>
+<h1>商品編集</h1>
+  <%= form_with model: @item,method: :patch,local:true do |f| %>
+   <h4>商品画像</h4>
+   <%= f.file_field :image, accept: "image/*" %>
+   <h4>商品名</h4>
+   <%= f.text_field :name %>
+   <h4>商品説明</h4>
+    <%= f.text_area :introduction %>
+   <h4>ジャンル</h4>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+    <%#= f.hidden_field :genre_id, value: "楽しいRuby" %>
+   <h4>税込価格</h4>
+    <%= f.text_field :price%><br>
+    <h4>販売ステータス</h4>
+    <p>販売中</p><%= f.radio_button :is_active, :true %>
+    <p>販売停止中</p><%= f.radio_button :is_active, :false %><br>
+
+  <%= f.submit '変更を保存する' %>
+<% end %>
