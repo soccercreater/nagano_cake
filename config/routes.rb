@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     get "/about" => "public/homes#about", as: "about"
     get "public/customers" => "public/customers#show", as: "my_page"
     patch 'item/:id' => 'item#update', as: 'update_item'
+    patch 'genres/:id' => 'genres#update', as: 'update_genres'
+
 
     devise_for :customers,skip:[:passwords,],controllers:{
       registrations: "public/registrations",
@@ -26,5 +28,6 @@ Rails.application.routes.draw do
     end
        namespace :admin do
         resources :customers, :genres, :homes, :items
+        patch 'customers/:id' => 'customers#update', as: 'update_customers'
       end
     end

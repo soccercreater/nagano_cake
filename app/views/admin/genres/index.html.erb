@@ -5,3 +5,11 @@
 
   <%= f.submit '新規登録' %>
 <% end %>
+
+<% @genres.each do |genre| %>
+<div>
+  <p><%= genre.name %></p>
+  <p><%= link_to "編集する", admin_genre_path(genre.id),method: :patch %></p>
+
+<% end %>
+
