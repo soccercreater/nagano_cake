@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(version: 2022_02_05_051532) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "encrypted_password"
+    t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2022_02_05_051532) do
 
   create_table "order_details", force: :cascade do |t|
     t.integer "item_id"
-    t.integer "order_at"
+    t.integer "order_id"
     t.integer "price"
     t.integer "amount"
     t.integer "making_status"

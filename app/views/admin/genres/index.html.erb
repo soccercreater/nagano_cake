@@ -9,7 +9,7 @@
 <% @genres.each do |genre| %>
 <div>
   <p><%= genre.name %></p>
-  <p><%= link_to "編集する", admin_genre_path(genre.id),method: :patch %></p>
+  <p><%= link_to "編集する", edit_admin_genre_path(genre.id) %></p>
 
 <% end %>
 

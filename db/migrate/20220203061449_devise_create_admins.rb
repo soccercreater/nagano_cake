@@ -13,10 +13,8 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.0]
 
       ## Rememberable
       t.datetime :remember_created_at
-
-      t.string :encrypted_password
-      t.datetime :created_at
-      t.datetime :updated_at
+      # t.datetime :created_at
+      # t.datetime :updated_at
 
 
       ## Trackable

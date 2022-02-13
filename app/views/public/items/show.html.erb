@@ -1,1 +1,7 @@
-
+<div>
+  <p><%= @items.image_id %></p>
+  <%= image_tag @items.image, size: "200x200" %>
+  <p><%= @items.name %></p>
+  <p><%= @items.introduction %></p>
+  <p>¥<%= @items.price %>(税込)</p>
+</div>

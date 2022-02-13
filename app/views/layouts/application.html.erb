@@ -10,30 +10,31 @@
 
   <body>
     <% if customer_signed_in? %>
+     ようこそ、<%= current_customer.first_name %>さん！
      <li>
-      <%= link_to "About", about_path, method: :delete %>
+      <%= link_to "マイページ",  my_page_path %>
      </li>
       <li>
-      <%= link_to "商品一覧", destroy_customer_session_path, method: :delete %>
+      <%= link_to "商品一覧", items_path %>
      </li>
       <li>
-      <%= link_to "注文一覧", destroy_customer_session_path, method: :delete %>
+      <%= link_to "カート", destroy_customer_session_path %>
      </li>
-      <li>
-      <%= link_to "ジャンル一覧", destroy_customer_session_path, method: :delete %>
+     <li>
+      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
      </li>
     <% elsif admin_signed_in? %>
      <li>
-      <%= link_to "商品一覧", root_path, method: :delete %>
+      <%= link_to "商品一覧",  admin_items_path %>
      </li>
       <li>
-      <%= link_to "会員一覧", root_path, method: :delete %>
+      <%= link_to "会員一覧", admin_customers_path %>
      </li>
       <li>
-      <%= link_to "注文一覧", root_path, method: :delete %>
+      <%= link_to "注文履歴一覧", root_path, method: :delete %>
      </li>
       <li>
-      <%= link_to "ジャンル一覧", root_path, method: :delete %>
+      <%= link_to "ジャンル一覧", admin_genres_path %>
      </li>
      <li>
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
@@ -43,13 +44,13 @@
       <%= link_to "About", about_path %>
      </li>
      <li>
-      <%= link_to "商品一覧", new_customer_registration_path %>
+      <%= link_to "商品一覧", items_path %>
      </li>
      <li>
       <%= link_to "新規登録", new_customer_registration_path %>
      </li>
      <li>
-      <%= link_to "ログイン", new_customer_registration_path %>
+      <%= link_to "ログイン", new_customer_session_path %>
      </li>
     <% end %>
 
