@@ -55,3 +55,7 @@ gem "refile-mini_magick"
 gem 'image_processing', '~>1.2'
 
 gem 'kaminari','~> 1.2.1'
+
+gem 'pry-byebug', group: :development
+
+gem "enum_help"

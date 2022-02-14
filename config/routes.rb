@@ -19,12 +19,14 @@ Rails.application.routes.draw do
    get "/customers/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
    patch "/customers/withdraw" => "customers#withdraw", as: "withdraw"
    resources :customers, only: [:edit, :update]
-   post "/orders/cimfirm" => "orders#comfirm", as: "comfirm"
+   post "/orders/confirm" => "orders#confirm", as: "confirm"
    get "/orders/complete" => "orders#complete", as: "complete"
    get "my_page" => "customers#show", as: "my_page"
    resources :orders, only: [:new, :index, :show, :create]
+   delete "/cart_items/:id/destroy" => "cart_items#destroy", as: "destroy"
    delete "/cart_items/destroy_all" => "cart_items#destroy_all", as: "destroy_all"
    resources :addresses, only: [:create, :edit, :update, :destroy, :index]
+   resources :cart_items, only: [:index, :create, :update]
   end
 
   namespace :admin do

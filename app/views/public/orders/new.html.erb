@@ -1,2 +1,19 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<h2>注文情報入力</h2>
+<p>支払方法</p>
+    <%= form_with model: @order,url: confirm_path, local:true do |f| %>
+    <h4><%= f.radio_button :payment_method, "credit_card" %>クレジットカード</h4>
+    <h4><%= f.radio_button :payment_method, "transfer" %>銀行振込</h4>
+<p>お届け先</p>
+    <h4><%= f.radio_button :address, "住所" %>ご自身の住所</h4>
+      <p><%= current_customer.address %></p>
+    <h4><%= f.radio_button :address, "credit_card" %>登録先住所から選択</h4>
+         <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+    <h4><%= f.radio_button :address, "credit_card" %>新しいお届け先</h4>
+      <p>郵便番号（ハイフンなし）</p>
+       <%= f.text_field :postal_code %>
+      </p>住所</p>
+       <%= f.text_area :address %>
+      </p>氏名</p>
+       <%= f.text_field :name %><br>
+       <%= f.submit "確認画面に進む" %>
+  <% end %>
