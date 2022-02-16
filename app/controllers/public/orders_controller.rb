@@ -16,16 +16,13 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.postal_code = @address.postal_code
     elsif params[:order][:address_option] == "2"
-      # @order = Order.new
-      # @order.name =
-      # @order.address =
-      # @order.postal_code =
+      @order = Order.new(order_params)
     end
-    @order.payment_method = params[:order][:payment_method]
-    @cart_items = current_customer.cart_items
-    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
-    @shipping_cost = 800
-    @total_payment = @shipping_cost + @total
+      @order.payment_method = params[:order][:payment_method]
+      @cart_items = current_customer.cart_items
+      @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
+      @shipping_cost = 800
+      @total_payment = @shipping_cost + @total
   end
 
   def complete
@@ -35,17 +32,32 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save
+    #ordr ＝order_details
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      @orderdetail = OrderDetail.new
+      @orderdetail.item_id = cart_item.item_id
+      @orderdetail.order_id = @order.id
+      @orderdetail.amount = cart_item.amount
+      @orderdetail.price = (cart_item.item.price * 1.1).floor
+      @orderdetail.save
+    end
+    #order = Order.new
+
     redirect_to complete_path
   end
 
   def index
-    @order = current_customer.order
+    @orders = current_customer.orders
   end
 
   def show
+    @orders = Order.all
+    @order = Order.find(params[:id])
   end
+
   private
   def order_params
-    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :payment_method, :total_payment, :shipping_cost, :price)
+    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :total_payment, :shipping_cost, :price, :created_at)
   end
 end

@@ -1,1 +1,6 @@
-<h1>New book</h1>
+<h1>注文履歴一覧</h1>
+<% @orders.each do |order| %>
+        <p>購入日時<%= order.created_at  %></p>
+        <p>購入者<%= order.address %></p>
+        <p>注文個数<%= order.name %> </p>
+  <% end %>
