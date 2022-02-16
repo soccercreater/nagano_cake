@@ -1,16 +1,22 @@
 <h2>注文情報確認</h2>
 <div>
-  <% @order.each do |order| %>
-        <p>商品名<%= order.item.name %></p>
-        <p>単価（税込）<%= (order.price* 1.1).floor %></p>
-        <p>数量<%= order.amount %> </p>
-        <p>小計<%= (order.item.price * 1.1).floor * cart_item.amount %>
-        <p></p>
+  <% @cart_items.each do |cart_item| %>
+        <p><%= cart_item.item.name %></p>
+        <p><%= (cart_item.item.price* 1.1).floor %></p>
+        <p><%= cart_item.amount %> </p>
+        <p><%= (cart_item.item.price * 1.1).floor * cart_item.amount %>
   <% end %>
+  <div>
+   送料<%= @shipping_cost %>
+   商品合計<%= @total %>
+   請求金額<%= @total_payment %>
+  </div>
 </div>
-<p>支払方法</p>
- <%= @order.payment_method %>
-<p>お届け先</p>
- <%= @order.address %>
+  <%= form_with model: @order,url: orders_path,method: :post, local:true do |f| %>
+   <%= f.hidden_field :amount %>
+   <p>支払方法<%= @order.payment_method %></p>
 
- <%= link_to "注文を確定する",complete_path %>
+   <p>お届け先<%= @order.address %><%= @order.postal_code %><%= @order.name %></p>
+
+   <%= f.submit "注文を確定する" %>
+   <% end %>
