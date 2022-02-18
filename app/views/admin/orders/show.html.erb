@@ -1,1 +1,44 @@
-<h4>注文履歴詳細</h4>
+ <p>請求金額合計<%= @total_payment %></p>
+
+  <table class="table">
+  <thead>
+   <h2>注文履歴詳細</h2>
+     <th scope="col">購入者</th>
+     <th>注文日</th>
+     <th>配送先</th>
+     <th>支払方法</th>
+     <th></th>
+      <tr>
+       <th scope="col"><%= @order.id %></th>
+       <th scope="col"><%= @order.created_at %></th>
+       <th scope="col"><%= @order.address %></th>
+       <th scope="col"><%= @order.payment_method %></th>
+      </tr>
+
+       <th scope="col">商品名</th>
+     <th>単価（税込）</th>
+     <th>数量</th>
+     <th>小計</th>
+     <th></th>
+      <tr><% @cart_items.each do |cart_item| %>
+       <th scope="col"><%= @order.name %></th>
+       <th scope="col"><%= (cart_item.item.price* 1.1).floor %></th>
+       <th scope="col"><%#= @#order.amount %></th>
+       <th scope="col"><%= (cart_item.item.price * 1.1).floor * cart_item.amount %></th>
+      </tr>
+        <% end %>
+     <th>商品合計</th>
+     <th>送料</th>
+     <th>請求金額合計</th>
+      <tr>
+       <th scope="col"><%= @total %></th>
+       <th scope="col"><%= @shipping_cost %></th>
+       <th scope="col"><%= @total_payment %></th>
+      </tr>
+   </thead>
+  <tbody>
+  </tbody>
+ </table>
+
+
+
