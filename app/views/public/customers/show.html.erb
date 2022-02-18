@@ -1,14 +1,25 @@
-
-<h3>マイページ</h3>
-     登録情報　<%= link_to "編集する",edit_customer_path(@customer.id) %>
-<div>
-  <p>氏名<%= @customer.first_name %><%= @customer.last_name %></p>
-  <p>カナ<%= @customer.first_name_kana %><%= @customer.last_name_kana %>
-  <p>郵便番号<%= @customer.postal_code %></p>
-  <p>住所<%= @customer.address %></p>
-  <p>電話番号<%= @customer.telephone_number %></p>
-  <p>メールアドレス<%= @customer.email %></p>
-</div>
-配送先<%= link_to "一覧を見る",addresses_path %><br>
-注文履歴<%= link_to "一覧を見る",addresses_path %>
-
+<table class="table">
+  <thead>
+   <h2>マイページ</h2>
+     登録情報<%= link_to "編集する",edit_customer_path(@customer.id) %>
+     <th scope="col">氏名</th>
+     <th>カナ</th>
+     <th>郵便番号</th>
+     <th>住所</th>
+     <th>電話番号</th>
+     <th>メールアドレス</th>
+     <th></th>
+      <tr>
+       <th scope="col"><%= @customer.first_name %><%= @customer.last_name %></th>
+       <th scope="col"><%= @customer.first_name_kana %><%= @customer.last_name_kana %></th>
+       <th scope="col"><%= @customer.postal_code %></th>
+       <th scope="col"><%= @customer.address %></th>
+       <th scope="col"><%= @customer.telephone_number %></th>
+       <th scope="col"><%= @customer.email %></th>
+      </tr>
+   </thead>
+  <tbody>
+  </tbody>
+ </table>
+ 配送先<%= link_to "一覧を見る",addresses_path %><br>
+ 注文履歴<%= link_to "一覧を見る",addresses_path %>

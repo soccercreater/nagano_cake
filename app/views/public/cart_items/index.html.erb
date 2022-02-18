@@ -1,19 +1,38 @@
-<h2>ショッピングカート</h2>
- <%= link_to "カートを空にする",destroy_all_path,method: :delete %>
-<div>
-  <% @cart_items.each do |cart_item| %>
-        <p>商品名<%= cart_item.item.name %></p>
-        <p>単価（税込）<%= (cart_item.item.price* 1.1).floor %></p>
-        <p>数量<%= cart_item.amount %> </p>
-         <%= form_with model: @cart_items,url:cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
-           <%= f.select :amount, [['1',1], ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9]], selected: cart_item.amount ,:size =>"40"%>
-           <%= f.submit '変更' %>
-         <% end %>
-        <p>小計<%= (cart_item.item.price * 1.1).floor * cart_item.amount %>
-        <p></p>
-        <%= link_to "削除する",destroy_path(cart_item.id),method: :delete %>
-  <% end %>
-</div>
- <%= link_to "買い物を続ける",items_path %>
- <p>合計金額<%= @total %></p>
- <%= link_to "情報入力に進む",new_order_path %>
+<table class="table">
+  <thead>
+   <h2>ショッピングカート</h2>
+    <%= link_to "カートを空にする",destroy_all_path,method: :delete %>
+     <th scope="col">商品名</th>
+     <th>単価（税込）</th>
+     <th>数量</th>
+     <th>小計</th>
+     <th></th>
+      <tr> <% @cart_items.each do |cart_item| %>
+       <th scope="col"><%= cart_item.item.name %></th>
+       <th scope="col"><%= (cart_item.item.price* 1.1).floor %></th>
+       <th scope="col">
+        <%= form_with model: @cart_items,url:cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
+         <%= f.select :amount, [['1',1], ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9]], selected: cart_item.amount ,:size =>"40"%>
+         <%= f.submit '変更' %>
+        <% end %></th>
+         <th scope="col"><%= (cart_item.item.price * 1.1).floor * cart_item.amount %></th>
+         <th scope="col"> <%= link_to "削除する",destroy_path(cart_item.id),method: :delete %></th>
+       </tr>
+        <% end %>
+ </thead>
+ <tbody>
+    <tr>
+     <th></th>
+     <th></th>
+     <th></th>
+     <th scope="row">合計金額</th>
+     <th><%= @total %></th>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+  </tbody>
+
+ </table>
+  <%= link_to "買い物を続ける",items_path %><br>
+  <%= link_to "情報入力に進む",new_order_path %>

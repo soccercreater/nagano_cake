@@ -42,6 +42,7 @@ class Public::OrdersController < ApplicationController
       @orderdetail.price = (cart_item.item.price * 1.1).floor
       @orderdetail.save
     end
+      @cart_items
     #order = Order.new
 
     redirect_to complete_path
