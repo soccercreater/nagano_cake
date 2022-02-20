@@ -11,7 +11,7 @@
        <th scope="col"><%= cart_item.item.name %></th>
        <th scope="col"><%= (cart_item.item.price* 1.1).floor %></th>
        <th scope="col">
-        <%= form_with model: @cart_items,url:cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
+        <%= form_with model: cart_item,url:cart_item_path(cart_item.id),method: :patch, local:true do |f| %>
          <%= f.select :amount, [['1',1], ['2',2],['3',3],['4',4],['5',5],['6',6],['7',7],['8',8],['9',9]], selected: cart_item.amount ,:size =>"40"%>
          <%= f.submit '変更' %>
         <% end %></th>

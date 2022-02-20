@@ -1,9 +1,23 @@
-<% @customer.each do |customer| %>
-<div>
-  <p>会員ID：<%= customer.id %></p>
-  <p>氏名：<%= customer.first_name %><%= customer.last_name %></p>
-  <p>メールアドレス：<%= customer.email  %></p>
-  <p>ステータス：<%= customer.is_active  %></p>
- </div>
-<% end %>
-<%= paginate @customers %>
+<table class="table">
+  <thead>
+    <h4>会員一覧</h4>
+     <th scope="col">会員ID</th>
+     <th>氏名</th>
+     <th>メールアドレス</th>
+     <th>ステータス</th>
+     <th></th>
+      <tr><% @customers.each do |customer| %>
+       <th scope="col"><%= customer.id %></th>
+       <th scope="col"><%= link_to admin_customer_path(customer.id) do %>
+        <%= customer.first_name %><%= customer.last_name %>
+       <% end %>
+       </th>
+       <th scope="col"><%= customer.email  %></th>
+       <th scope="col"><%= customer.is_active  %></th>
+      </tr>
+        <% end %>
+   </thead>
+  <tbody>
+  </tbody>
+ </table>
+ <%= paginate @customers %>

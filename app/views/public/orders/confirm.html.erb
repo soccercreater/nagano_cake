@@ -32,11 +32,12 @@
    <%= f.hidden_field :payment_method %>
    <%= f.hidden_field :address %>
    <%= f.hidden_field :postal_code %>
-   <%= f.hidden_field :total_payment %>
-   <%= f.hidden_field :shipping_cost %>
+   <%= f.hidden_field :total_payment, value: @total_payment %>
+   <%= f.hidden_field :shipping_cost, value: @shipping_cost %>
+
    <p>支払方法<%= @order.payment_method %></p>
 
-   <p>お届け先<%= @order.address %><%= @order.postal_code %><%= @order.name %></p>
+   <p>お届け先<%s= @order.address %><%= @order.postal_code %><%= @order.name %></p>
 
    <%= f.submit "注文を確定する" %>
    <% end %>

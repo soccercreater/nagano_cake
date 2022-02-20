@@ -42,6 +42,7 @@ class Public::OrdersController < ApplicationController
       @orderdetail.price = (cart_item.item.price * 1.1).floor
       @orderdetail.save
     end
+      @cart_items.destroy_all
       redirect_to complete_path
   end
 
@@ -53,7 +54,6 @@ class Public::OrdersController < ApplicationController
     @orders = Order.all
     @order = Order.find(params[:id])
     @cart_items = current_customer.cart_items
-    # @cart_item = current_customer.cart_item
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
     @shipping_cost = 800
     @total_payment = @shipping_cost + @total

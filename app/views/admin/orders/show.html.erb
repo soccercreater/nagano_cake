@@ -20,11 +20,11 @@
      <th>数量</th>
      <th>小計</th>
      <th></th>
-      <tr><% @cart_items.each do |cart_item| %>
+      <tr><% @orders.each do |order| %>
        <th scope="col"><%= @order.name %></th>
-       <th scope="col"><%= (cart_item.item.price* 1.1).floor %></th>
+       <th scope="col"><%= (order.item.price* 1.1).floor %></th>
        <th scope="col"><%#= @#order.amount %></th>
-       <th scope="col"><%= (cart_item.item.price * 1.1).floor * cart_item.amount %></th>
+       <th scope="col"><%= (order.item.price * 1.1).floor * cart_item.amount %></th>
       </tr>
         <% end %>
      <th>商品合計</th>
