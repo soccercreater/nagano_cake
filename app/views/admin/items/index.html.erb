@@ -1,31 +1,21 @@
-<h1>商品一覧</h1>
-                  <tr></tr>
-                  <tr>
-                    <td>商品</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>商品名</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>税込価格</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>ジャンル</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>ステータス</td>
-                    <td></td>
-                  </tr>
-<% @items.each do |item| %>
-<div>
-  <p>商品名：<%= item.name %></p>
-  <p>商品説明：<%= item.introduction %></p>
-  <p>ジャンル：<%= item.genre_id  %></p>
-  <p>税込価格：<%= item.price  %></p>
-  <p>販売ステータス：<%= item.is_active %></p>
-</div>
-<% end %><%= paginate @items %>
+  <table class="table">
+  <thead>
+    <th>
+     <tr>商品一覧</tr>
+     <tr><%= link_to "新規登録",new_admin_item_path %></tr>
+    </th>
+     <th scope="col">商品ID</th>
+     <th>商品名</th>
+     <th>税込価格</th>
+     <th>ジャンル</th>
+      <tr><% @items.each do |item| %>
+       <th scope="col"><%= item.id %></th>
+       <th scope="col"><%= item.name %></th>
+       <th scope="col"><%= (item.price* 1.1).floor %></th>
+       <th scope="col"><%=  item.genre.name%></th>
+      </tr>
+        <% end %>
+   </thead>
+  <tbody>
+  </tbody>
+ </table>

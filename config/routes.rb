@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: "/homes#top"
     resources :customers, :genres, :homes, :items
     resources :orders, only: [:show, :update]
     patch 'customers/:id' => 'customers#update', as: 'update_customers'

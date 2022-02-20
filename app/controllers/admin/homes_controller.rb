@@ -5,12 +5,16 @@ class Admin::HomesController < ApplicationController
     # @orders = Order.page(params[:page])
 
     # @cart_items =
-    # @customer = customer.first_name + customer.last_name
+    @customer = Customer.all
+    @order_details = OrderDetail.all
+
+    # @customer = @customer.first_name
 
 
   end
 
-# private
-#   def
-#   end
+private
+  def order_params
+    params.require(:order).permit(:payment_method, :address, :postal_code, :name, :total_payment, :shipping_cost, :price, :created_at)
+  end
 end

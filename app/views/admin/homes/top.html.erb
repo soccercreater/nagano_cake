@@ -9,7 +9,7 @@
       <tr>
        <th scope="col"><%= order.created_at %></th>
         <th scope="col"><%= link_to admin_order_path(order.id) do %>
-        <%= current_customer.first_name %><%= current_customer.last_name %>
+        <%= order.customer.first_name %><%= order.customer.last_name %>
        <% end %>
 
        </th>

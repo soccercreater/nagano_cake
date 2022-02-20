@@ -51,8 +51,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @orders = Order.all
+    @orders = current_customer.orders
     @order = Order.find(params[:id])
+    @order_details = OrderDetail.find(params[:id])
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
     @shipping_cost = 800

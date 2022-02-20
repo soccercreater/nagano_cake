@@ -10,7 +10,10 @@
        <tr><% @orders.each do |order| %>
         <th scope="col"><%= order.created_at %></th>
         <th scope="col"><%= order.address %></th>
-        <th scope="col"><%= order.name %></th>
+         <th><% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.name %>
+          <% end %></th>
+          </%>
         <th scope="col"><%= order.payment_method %></th>
         <th scope="col"><%= link_to "表示する",order_path(order.id) %></th>
        </tr>
