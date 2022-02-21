@@ -7,7 +7,7 @@
      <th>支払方法</th>
       <tr>
        <th scope="col"><%= @order.created_at %></th>
-       <th scope="col">〒<%= @order.postal_code %><%= @order.address %><%= @order.name %></th>
+       <th scope="col">〒<%= @order.postal_code %><%= @order.address %><%= @order.customer.first_name %><%= @order.customer.last_name %></th>
        <th scope="col"><%= @order.payment_method %></th>
       </tr>
   </tbody>
@@ -20,11 +20,11 @@
      <th>単価（税込）</th>
      <th>個数</th>
      <th>小計</th>
-      <tr><% @orders.each do |order| %>
-        <th scope="col"><%= order.order_detail.item.name %></th>
-        <th scope="col"><%= (order_detail.price* 1.1).floor %></th>
+      <tr><% @order_details.each do |order_detail| %>
+        <th scope="col"><%= order_detail.item.name %></th>
+        <th scope="col"><%= order_detail.price %></th>
         <th scope="col"><%= order_detail.amount %></th>
-        <th scope="col"><%= (order_detail.price * 1.1).floor * order_detail.amount %></th>
+        <th scope="col"><%= order_detail.price * order_detail.amount %></th>
       </tr>
         <% end %>
   </tbody>

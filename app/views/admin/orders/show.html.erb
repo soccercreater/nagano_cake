@@ -1,5 +1,3 @@
- <p>請求金額合計<%= @total_payment %></p>
-
   <table class="table">
   <thead>
    <h2>注文履歴詳細</h2>
@@ -9,9 +7,9 @@
      <th>支払方法</th>
      <th></th>
       <tr>
-       <th scope="col"><%= @order.id %></th>
+       <th scope="col"><%= @order.customer.first_name %><%= @order.customer.last_name %></th>
        <th scope="col"><%= @order.created_at %></th>
-       <th scope="col"><%= @order.address %></th>
+       <th scope="col">〒<%= @order.postal_code %><%= @order.address %><%= @order.customer.first_name %><%= @order.customer.last_name %></th>
        <th scope="col"><%= @order.payment_method %></th>
       </tr>
 
@@ -20,11 +18,11 @@
      <th>数量</th>
      <th>小計</th>
      <th></th>
-      <tr><% @orders.each do |order| %>
-       <th scope="col"><%= @order.name %></th>
-       <th scope="col"><%= (order.item.price* 1.1).floor %></th>
-       <th scope="col"><%#= @#order.amount %></th>
-       <th scope="col"><%= (order.item.price * 1.1).floor * cart_item.amount %></th>
+      <tr><% @order_details.each do |order_detail| %>
+       <th scope="col"><%= order_detail.item.name %></th>
+       <th scope="col"><%= order_detail.price %></th>
+       <th scope="col"><%= order_detail.amount %></th>
+       <th scope="col"><%= order_detail.price * order_detail.amount %></th>
       </tr>
         <% end %>
      <th>商品合計</th>
